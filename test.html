@@ -164,7 +164,10 @@
     function updateCargoStatus(cargoId, newStatus) {
         const cargo = cargoList.find(c => c.id === cargoId);
 
-        if (newS	
+        if (newStatus === "Доставлен" && new Date(cargo.departureDate) > new Date()) {
+            alert("Ошибка: нельзя установить статус 'Доставлен', пока дата отправления находится в будущем.");
+            return;
+        }
 
         cargo.status = newStatus;
         renderTable(filterStatus.value);
